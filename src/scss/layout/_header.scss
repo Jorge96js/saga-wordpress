@@ -1,0 +1,123 @@
+@use 'base/vars' as v;
+@use 'base/mixins' as m;
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    height: 100%;
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+    flex-grow: 1;
+
+    @include m.tablet {
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    // Estilos compartidos para las cards
+    .main-card, 
+    .card {
+        position: relative;
+        background-color: v.$grayDark;
+        height: 25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        cursor: pointer;
+        overflow: hidden; // Para que la imagen no se salga
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &::after {
+            position: absolute;
+            z-index: 2;
+            content: " ";
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(v.$black, 0.8);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            z-index: 3;
+            padding: 1rem;
+
+            h3 {
+                font-family: v.$fuente_headings;
+                text-align: left;
+                margin-bottom: 0.5rem !important;
+                text-transform: uppercase;
+            }
+
+            p {
+                font-family: v.$fuente_textos;
+                font-size: 1.5rem;
+                margin: 0;
+            }
+        }
+
+        // Hovers
+        &:hover {
+            &::after {
+                background-color: rgba(v.$black, 0.4);
+            }
+            .card-body {
+                opacity: 0.05; // 5% de opacidad
+            }
+        }
+    }
+
+    // Ajustes específicos para Main Card
+    .main-card {
+        @include m.tablet {
+            height: auto;
+            flex-grow: 1;
+            flex-basis: 50%;
+        }
+    }
+
+    // Grid del Header
+    .grid-header {
+        @include m.grid(2, 1rem);
+        overflow: hidden;
+
+        @include m.tablet {
+            flex-grow: 1;
+            flex-basis: 50%;
+        }
+
+        .box {
+            border-radius: 0;
+            overflow: hidden;
+
+            .card {
+                background-color: v.$mainColor;
+                width: 100%;
+                height: clamp(10rem, 10vw, 12rem);
+
+
+                .card-body {
+                    p { font-size: 1.2rem; }
+                    h3 { font-size: 1.5rem; }
+                }
+            }
+        }
+    }
+}

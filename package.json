@@ -1,0 +1,21 @@
+{
+  "name": "blog-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "gulp dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^5.1.0"
+  },
+  "dependencies": {
+    "sass": "^1.79.3"
+  }
+}
